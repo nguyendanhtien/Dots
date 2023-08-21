@@ -4,14 +4,15 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Music", menuName = "ScriptableObjects/Music", order = 1)]
 public class Music : ScriptableObject
 {
-    [SerializeField] AudioClip[] audio;
-    public AudioClip GetMusic(int i)
+    [SerializeField]public  AudioClip audio;
+    
+    public float[] DataMusic()
     {
+        float[] data = new float[audio.samples * audio.channels];
+        audio.GetData(data,0);
 
-        return audio[i];
-
-
-    }    
+        return data;
+    }
 
 
 

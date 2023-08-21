@@ -44,10 +44,15 @@ public class DotController : MonoBehaviour
 
     public AudioClip GetAudio(float rate,int baseFr)
     {
-        AudioClip audio = AudioClip.Create("name" + rate.ToString(), audioSource.clip.samples * audioSource.clip.channels, audioSource.clip.channels, baseFr + (int)(audioSource.clip.frequency * rate), true, false);
+        AudioClip audio = AudioClip.Create("name" + rate.ToString(), audioSource.clip.samples * audioSource.clip.channels, audioSource.clip.channels,(int)( baseFr+4000*rate), true, false);
         float[] samples = new float[audioSource.clip.samples * audioSource.clip.channels];
         audioSource.clip.GetData(samples, 0);
-
+        /*
+        for(int i = 0;i<samples.Length;i++)
+        {
+            samples[i] = samples[i] * rate;
+        }
+        */
         audio.SetData(samples, 0);
 
         return audio;
